@@ -1,0 +1,27 @@
+button {
+    width: 95VW;
+    height: 10VH;
+    display: block;
+    padding-left: auto;
+    padding-right: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1VH;
+    background-color: whitesmoke;
+    border-color: black;
+    border-radius: 5VW;
+    border: 1VW;
+    border-style: solid;
+}
+
+.createRouteButton {
+    width: 70VW;
+    height: 5VH;
+    display: inline-block;
+}
+
+.leaderboardButton {
+    width: 25VW;
+    height: 5VH;
+    display: inline-block;
+}
