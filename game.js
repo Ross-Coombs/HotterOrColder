@@ -15,7 +15,7 @@ function handleError(error) {
 function showPosition(position) {
     let lat = position.coords.latitude;  // Extract latitude
     let lon = position.coords.longitude; // Extract longitude
-    document.getElementById("currentMessage").innerHTML = `Latitude: ${lat} <br>Longitude: ${lon} <br>` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, lat, lon)} m`;
+    document.getElementById("currentMessage").innerHTML = `Latitude: ${lat} <br>Longitude: ${lon} <br>` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, lat, lon).toFixed(0)} m`;
 }
 
 //calculate distance using the haversine formula
