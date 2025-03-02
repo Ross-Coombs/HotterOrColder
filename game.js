@@ -12,11 +12,18 @@ function handleError(error) {
     document.getElementById("currentMessage").innerHTML = "Can't find you<br>check location settings";
 }
 
+let previousLat;
+let previousLon;
+let latNow;
+let lonNow;
 function showPosition(position) {
-    let lat = position.coords.latitude;  // Extract latitude
-    let lon = position.coords.longitude; // Extract longitude
-    console.log(`Latitude: ${lat}\nLongitude: ${lon}\n` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, lat, lon).toFixed(0)} m`);
-    document.getElementById("currentMessage").innerHTML = `Distance from target: ${calcDistance(56.4579548, -2.9810812, lat, lon).toFixed(0)} m`;
+    previousLat = latNow;
+    previousLon = lonNow;
+    latNow = position.coords.latitude;  // Extract latitude
+    lonNow = position.coords.longitude; // Extract longitude
+    console.log(`Latitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(0)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(0)} m`);
+    //document.getElementById("currentMessage").innerHTML = `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(0)} m`;
+    document.getElementById("currentMessage").innerHTML = `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(0)} m`;
 }
 
 //calculate distance using the haversine formula
