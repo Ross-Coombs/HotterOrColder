@@ -27,7 +27,7 @@ function calcDistance(lat1, lon1, lat2, lon2) {
     //haversine formula
     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return (6371 * c)/1000; // Distance in m (6371 is the radius of Earth in km)
+    return (6371 * c)*1000; // Distance in m (6371 is the radius of Earth in km)
 }
 
 function formatTime(ms) {
