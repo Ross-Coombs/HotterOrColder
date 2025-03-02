@@ -1,14 +1,21 @@
+let watchID;
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
+        watchID = navigator.geolocation.watchPosition(showPosition, handleError);
+    } else {
         document.getElementById("currentMessage").innerHTML = "Geolocation not supported :(";
     }
-    document.getElementById("currentMessage").innerHTML = calcDistance(56.4559872, -2.998272, 56.457922, -2.981056);
+}
+
+function handleError(error) {
+    console.log("Error getting location:", error);
+    document.getElementById("currentMessage").innerHTML = "Can't find you<br>check location settings";
 }
 
 function showPosition(position) {
-    document.getElementById("currentMessage").innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+    let lat = position.coords.latitude;  // Extract latitude
+    let lon = position.coords.longitude; // Extract longitude
+    document.getElementById("currentMessage").innerHTML = `Latitude: ${lat} <br>Longitude: ${lon} <br>` + `Distance from target: ${calcDistance(56.4559872, -2.998272, lat, lon).toFixed(2)} km`;
 }
 
 //calculate distance using the haversine formula
