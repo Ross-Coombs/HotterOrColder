@@ -17,11 +17,30 @@ button {
 .createRouteButton {
     width: 70VW;
     height: 5VH;
-    display: inline-block;
+    display: inline;
 }
 
 .leaderboardButton {
     width: 25VW;
     height: 5VH;
-    display: inline-block;
+    display: inline;
+}
+#game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100VH;
+    background-color: whitesmoke;
+}
+
+#currentMessage {
+    text-align: center;
+    margin: auto;
+    justify-self: center;
+}
+
+#timer {
+    text-align: center;
+    width: 100VW;
+    justify-self: baseline;
 }
