@@ -15,7 +15,7 @@ function handleError(error) {
 function showPosition(position) {
     let lat = position.coords.latitude;  // Extract latitude
     let lon = position.coords.longitude; // Extract longitude
-    document.getElementById("currentMessage").innerHTML = `Latitude: ${lat} <br>Longitude: ${lon} <br>` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, lat, lon).toFixed(2)} km`;
+    document.getElementById("currentMessage").innerHTML = `Latitude: ${lat} <br>Longitude: ${lon} <br>` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, lat, lon)} m`;
 }
 
 //calculate distance using the haversine formula
@@ -27,17 +27,15 @@ function calcDistance(lat1, lon1, lat2, lon2) {
     //haversine formula
     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return 6371 * c; // Distance in km (6371 is the radius of Earth in km)
+    return (6371 * c)/1000; // Distance in m (6371 is the radius of Earth in km)
 }
 
 function formatTime(ms) {
     let totalSeconds = Math.floor(ms / 1000);
     let minutes = Math.floor(totalSeconds / 60);
     let seconds = totalSeconds % 60;
-    let milliseconds = ms % 1000; // Get remaining milliseconds
-
-    // Ensure proper formatting (e.g., 02:05:123)
-    return `${String(minutes).padStart(2, '0')}:` + `${String(seconds).padStart(2, '0')}:` + `${String(milliseconds).padStart(3, '0')}`;
+    // Ensure proper formatting (e.g., 02:05)
+    return `${String(minutes).padStart(2, '0')}:` + `${String(seconds).padStart(2, '0')}`;
 }
 
 function timer(startTime) {
@@ -47,6 +45,6 @@ function timer(startTime) {
 
 function gameplay() {
     getLocation();
-    startTime = Date.now();
-    setInterval(() => timer(startTime), 10);
+    let startTime = Date.now();
+    setInterval(() => timer(startTime), 100);
 }
