@@ -22,8 +22,8 @@ function showPosition(position) {
     latNow = position.coords.latitude;  // Extract latitude
     lonNow = position.coords.longitude; // Extract longitude
     console.log(`Latitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`);
-    document.getElementById("currentMessage").innerHTML = `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(2)} m`;
-    document.getElementById("currentMessage").innerHTML = `Latitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`;
+    //document.getElementById("currentMessage").innerHTML = `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(2)} m`;
+    document.getElementById("currentMessage").innerHTML = `Latitude: ${latNow}<br>Longitude: ${lonNow}<br>` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(3)} m<br>` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m<br>` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`;
 }
 
 //calculate distance using the haversine formula
