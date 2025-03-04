@@ -21,9 +21,9 @@ function showPosition(position) {
     previousLon = lonNow;
     latNow = position.coords.latitude;  // Extract latitude
     lonNow = position.coords.longitude; // Extract longitude
-    console.log(`Latitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m`);
-    //document.getElementById("currentMessage").innerHTML = `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(2)} m`;
+    console.log(`Latitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`);
     document.getElementById("currentMessage").innerHTML = `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(2)} m`;
+    document.getElementById("currentMessage").innerHTML = `Latitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`;
 }
 
 //calculate distance using the haversine formula
@@ -36,6 +36,17 @@ function calcDistance(lat1, lon1, lat2, lon2) {
     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return (6371 * c)*1000; // Distance in m (6371 is the radius of Earth in km)
+}
+
+let intervalLat;
+let intervalLon;
+let progress;
+function checkProgress() {
+    if (calcDistance(intervalLat, intervalLon, latNow, lonNow)) {
+        
+    }
+    intervalLat = latNow;
+    intervalLon = lonNow;
 }
 
 function formatTime(ms) {
@@ -55,4 +66,5 @@ function gameplay() {
     getLocation();
     let startTime = Date.now();
     setInterval(() => timer(startTime), 100);
+    setInterval(() => checkProgress(), 5000);
 }
