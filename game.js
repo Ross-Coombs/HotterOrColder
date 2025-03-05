@@ -1,3 +1,6 @@
+let targetLat = 56.4579548;//library
+let targetLon = -2.9810812;
+
 let watchID;
 function getLocation() {
     if (navigator.geolocation) {
@@ -9,7 +12,7 @@ function getLocation() {
 
 function handleError(error) {
     console.log("Error getting location:", error);
-    document.getElementById("currentMessage").innerHTML = "Can't find you<br>check location settings";
+    document.getElementById("currentMessage").innerHTML = "Can't find you!<br>Check location settings";
 }
 
 let previousLat;
@@ -21,9 +24,9 @@ function showPosition(position) {
     previousLon = lonNow;
     latNow = position.coords.latitude;  // Extract latitude
     lonNow = position.coords.longitude; // Extract longitude
-    console.log(`Latitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`);
+    console.log(`Latitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(targetLat, targetLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`);
     //document.getElementById("currentMessage").innerHTML = `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(2)} m`;
-    document.getElementById("currentMessage").innerHTML = `Latitude: ${latNow}<br>Longitude: ${lonNow}<br>` + `Distance from target: ${calcDistance(56.4579548, -2.9810812, latNow, lonNow).toFixed(3)} m<br>` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m<br>` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`;
+    document.getElementById("currentMessage").innerHTML = `Latitude: ${latNow}<br>Longitude: ${lonNow}<br>` + `Distance from target: ${calcDistance(targetLat, targetLon, latNow, lonNow).toFixed(3)} m<br>` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m<br>` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`;
 }
 
 //calculate distance using the haversine formula
@@ -42,8 +45,10 @@ let intervalLat;
 let intervalLon;
 let progress;
 function checkProgress() {
-    if (calcDistance(intervalLat, intervalLon, latNow, lonNow)) {
-        
+    if (calcDistance(targetLat, targetLon, latNow, lonNow) < calcDistance(targetLat, targetLon, intervalLat, intervalLon)) {
+        document.getElementById("currentMessage").innerHTML = "you're amazing <3";
+    } else {
+        document.getElementById("currentMessage").innerHTML = "noooo";
     }
     intervalLat = latNow;
     intervalLon = lonNow;
