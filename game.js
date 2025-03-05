@@ -48,12 +48,14 @@ function checkProgress() {
     let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
     if (howMuchCloser > 5) {
         document.getElementById("currentMessage").innerHTML = "you're amazing <3";
+    } else if (howMuchCloser > -1 && howMuchCloser < 1) {
+        document.getElementById("currentMessage").innerHTML = "you haven'nt really moved";
     } else if (howMuchCloser > 0) {
         document.getElementById("currentMessage").innerHTML = "ok so its closer but like not much";
-    } else if (howMuchCloser < 0) {
-        document.getElementById("currentMessage").innerHTML = "wrong way";
     } else if (howMuchCloser < -5) {
-        document.getElementById("currentMessage").innerHTML = "stop this is embarassing";
+        document.getElementById("currentMessage").innerHTML = "stop this is emarassing";
+    } else if (howMuchCloser < 0) {
+        document.getElementById("currentMessage").innerHTML = "this is the wrong way";
     } else {
         document.getElementById("currentMessage").innerHTML = "Move around to get hints!"
     }
