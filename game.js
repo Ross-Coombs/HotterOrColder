@@ -49,7 +49,7 @@ function checkProgress() {
     if (howMuchCloser > 5) {
         document.getElementById("currentMessage").innerHTML = "you're amazing <3";
     } else if (howMuchCloser > -1 && howMuchCloser < 1) {
-        document.getElementById("currentMessage").innerHTML = "you haven'nt really moved";
+        document.getElementById("currentMessage").innerHTML = "you haven't really moved";
     } else if (howMuchCloser > 0) {
         document.getElementById("currentMessage").innerHTML = "ok so its closer but like not much";
     } else if (howMuchCloser < -5) {
