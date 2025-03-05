@@ -45,10 +45,17 @@ let intervalLat;
 let intervalLon;
 let progress;
 function checkProgress() {
-    if (calcDistance(targetLat, targetLon, latNow, lonNow) < calcDistance(targetLat, targetLon, intervalLat, intervalLon)) {
+    let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
+    if (howMuchCloser > 5) {
         document.getElementById("currentMessage").innerHTML = "you're amazing <3";
+    } else if (howMuchCloser > 0) {
+        document.getElementById("currentMessage").innerHTML = "ok so its closer but like not much";
+    } else if (howMuchCloser < 0) {
+        document.getElementById("currentMessage").innerHTML = "wrong way";
+    } else if (howMuchCloser < -5) {
+        document.getElementById("currentMessage").innerHTML = "stop this is embarassing";
     } else {
-        document.getElementById("currentMessage").innerHTML = "noooo";
+        document.getElementById("currentMessage").innerHTML = "Move around to get hints!"
     }
     intervalLat = latNow;
     intervalLon = lonNow;
