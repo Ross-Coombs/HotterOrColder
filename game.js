@@ -4,7 +4,8 @@ let targetLon = -2.9810812;
 let watchID;
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, handleError); //force getting location on load
+        console.log("Getting location");
+        navigator.geolocation.getCurrentPosition(firstPosition, handleError); //force getting location on load
         watchID = navigator.geolocation.watchPosition(showPosition, handleError); //continuously update position
     } else {
         document.getElementById("currentMessage").innerHTML = "Geolocation not supported :(";
@@ -21,6 +22,13 @@ let previousLat;
 let previousLon;
 let latNow;
 let lonNow;
+function firstPosition(position) {
+    lastLocUpdate = Date.now();
+    latNow = position.coords.latitude;  // Extract latitude
+    lonNow = position.coords.longitude; // Extract longitude
+    console.log(`Updated Position\nLatitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(targetLat, targetLon, latNow, lonNow).toFixed(3)} m\n`);
+}
+
 function showPosition(position) {
     lastLocUpdate = Date.now();
     previousLat = latNow;
