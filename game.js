@@ -56,7 +56,7 @@ let intervalLat;
 let intervalLon;
 let progress;
 function checkProgress() {
-    if (Date.now()-lastLocUpdate > 5) {
+    if (Date.now()-lastLocUpdate > 5000) {
         console.log(`Progress Check: Location not updated since last check\nLocation last updated: ${lastLocUpdate}`)
         return;
     }
