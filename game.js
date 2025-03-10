@@ -45,8 +45,8 @@ let intervalLat;
 let intervalLon;
 let progress;
 function checkProgress() {
-    console.log(`Progress Check\nLatitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(targetLat, targetLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`)
     let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
+    console.log(`Progress Check\n` + `Distance from previous check: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m\n` + `Change in distance to target: ${howMuchCloser}m`)
     if (howMuchCloser > 5) {
         document.getElementById("currentMessage").innerHTML = "you're amazing <3";
     } else if (howMuchCloser > -1 && howMuchCloser < 1) {
