@@ -4,7 +4,8 @@ let targetLon = -2.9810812;
 let watchID;
 function getLocation() {
     if (navigator.geolocation) {
-        watchID = navigator.geolocation.watchPosition(showPosition, handleError);
+        navigator.geolocation.getCurrentPosition(showPosition, handleError); //force getting location on load
+        watchID = navigator.geolocation.watchPosition(showPosition, handleError); //continuously update position
     } else {
         document.getElementById("currentMessage").innerHTML = "Geolocation not supported :(";
     }
