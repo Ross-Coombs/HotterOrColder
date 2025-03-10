@@ -15,11 +15,13 @@ function handleError(error) {
     document.getElementById("currentMessage").innerHTML = "Can't find you!<br>Check location settings";
 }
 
+let lastLocUpdate;
 let previousLat;
 let previousLon;
 let latNow;
 let lonNow;
 function showPosition(position) {
+    lastLocUpdate = Date.now();
     previousLat = latNow;
     previousLon = lonNow;
     latNow = position.coords.latitude;  // Extract latitude
@@ -45,6 +47,10 @@ let intervalLat;
 let intervalLon;
 let progress;
 function checkProgress() {
+    if (Date.now()-lastLocUpdate > 5) {
+        console.log("Progress Check: Location not updated since last check")
+        return;
+    }
     let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
     console.log(`Progress Check\n` + `Distance from previous check: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m\n` + `Change in distance to target: ${howMuchCloser}m`)
     if (howMuchCloser > 5) {
