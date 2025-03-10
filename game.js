@@ -48,7 +48,7 @@ let intervalLon;
 let progress;
 function checkProgress() {
     if (Date.now()-lastLocUpdate > 5) {
-        console.log("Progress Check: Location not updated since last check")
+        console.log(`Progress Check: Location not updated since last check\nLocation last updated: ${lastLocUpdate}`)
         return;
     }
     let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
