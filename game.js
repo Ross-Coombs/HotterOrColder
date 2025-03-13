@@ -1,5 +1,5 @@
-let targetLat = 56.4579548;//library
-let targetLon = -2.9810812;
+let targetLat = 56.458300; //campus green 56.4579548;//library
+let targetLon = -2.982235; //-2.9810812;
 
 let watchID;
 function getLocation() {
@@ -61,14 +61,19 @@ function checkProgress() {
         return;
     }
     let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
+    let howFarAway = calcDistance(targetLat, targetLon, latNow, lonNow);
     console.log(`Progress Check\n` + `Distance from previous check: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m\n` + `Change in distance to target: ${howMuchCloser}m`)
-    if (howMuchCloser > 5) {
+    if (howFarAway < 5) {
+        document.getElementById("currentMessage").innerHTML = "WIN!";
+    } else if (howFarAway < 15) {
+        document.getElementById("currentMessage").innerHTML = "BOILING HOT!";
+    } else if (howMuchCloser > 10) {
         document.getElementById("currentMessage").innerHTML = "Hotter!";
     } else if (howMuchCloser > -1 && howMuchCloser < 1) {
         document.getElementById("currentMessage").innerHTML = "Move around!";
     } else if (howMuchCloser > 0) {
         document.getElementById("currentMessage").innerHTML = "Getting Warmer!";
-    } else if (howMuchCloser < -5) {
+    } else if (howMuchCloser < -10) {
         document.getElementById("currentMessage").innerHTML = "Colder!";
     } else if (howMuchCloser < 0) {
         document.getElementById("currentMessage").innerHTML = "Getting Cooler!";
