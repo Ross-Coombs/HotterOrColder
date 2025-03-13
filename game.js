@@ -63,17 +63,17 @@ function checkProgress() {
     let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
     console.log(`Progress Check\n` + `Distance from previous check: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m\n` + `Change in distance to target: ${howMuchCloser}m`)
     if (howMuchCloser > 5) {
-        document.getElementById("currentMessage").innerHTML = "you're amazing <3";
+        document.getElementById("currentMessage").innerHTML = "Hotter!";
     } else if (howMuchCloser > -1 && howMuchCloser < 1) {
-        document.getElementById("currentMessage").innerHTML = "you haven't really moved";
+        document.getElementById("currentMessage").innerHTML = "Move around!";
     } else if (howMuchCloser > 0) {
-        document.getElementById("currentMessage").innerHTML = "ok so its closer but like not much";
+        document.getElementById("currentMessage").innerHTML = "Getting Warmer!";
     } else if (howMuchCloser < -5) {
-        document.getElementById("currentMessage").innerHTML = "stop this is emarassing";
+        document.getElementById("currentMessage").innerHTML = "Colder!";
     } else if (howMuchCloser < 0) {
-        document.getElementById("currentMessage").innerHTML = "this is the wrong way";
+        document.getElementById("currentMessage").innerHTML = "Getting Cooler!";
     } else {
-        document.getElementById("currentMessage").innerHTML = "Move around to get hints!"
+        document.getElementById("currentMessage").innerHTML = "Wait what"
     }
     intervalLat = latNow;
     intervalLon = lonNow;

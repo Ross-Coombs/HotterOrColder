@@ -44,3 +44,7 @@ button {
     width: 100VW;
     justify-self: baseline;
 }
+
+.game {
+    background-color: whitesmoke;
+}
