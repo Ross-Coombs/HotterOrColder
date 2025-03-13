@@ -1,6 +1,7 @@
-let targetLat = 56.458300; //campus green 56.4579548;//library
-let targetLon = -2.982235; //-2.9810812;
-
+let latlons = new URLSearchParams(window.location.search); //for campus green: ?lat=56.458300&lon=-2.982235
+let targetLat = latlons.get("lat");
+let targetLon = latlons.get("lon");
+console.log(`Target Lat: ${targetLat} Lon: ${targetLon}`);
 let watchID;
 function getLocation() {
     if (navigator.geolocation) {
@@ -65,20 +66,28 @@ function checkProgress() {
     console.log(`Progress Check\n` + `Distance from previous check: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m\n` + `Change in distance to target: ${howMuchCloser}m`)
     if (howFarAway < 5) {
         document.getElementById("currentMessage").innerHTML = "WIN!";
+        document.getElementById("game").style.backgroundColor = "rgb(254, 0, 0)"
     } else if (howFarAway < 15) {
         document.getElementById("currentMessage").innerHTML = "BOILING HOT!";
+        document.getElementById("game").style.backgroundColor = "rgb(254, 0, 0)"
     } else if (howMuchCloser > 10) {
         document.getElementById("currentMessage").innerHTML = "Hotter!";
+        document.getElementById("game").style.backgroundColor = "rgb(255, 66, 47)"
     } else if (howMuchCloser > -1 && howMuchCloser < 1) {
         document.getElementById("currentMessage").innerHTML = "Move around!";
+        document.getElementById("game").style.backgroundColor = "white"
     } else if (howMuchCloser > 0) {
         document.getElementById("currentMessage").innerHTML = "Getting Warmer!";
+        document.getElementById("game").style.backgroundColor = "rgb(255, 105, 106)"
     } else if (howMuchCloser < -10) {
         document.getElementById("currentMessage").innerHTML = "Colder!";
+        document.getElementById("game").style.backgroundColor = "rgb(47, 155, 254)"
     } else if (howMuchCloser < 0) {
         document.getElementById("currentMessage").innerHTML = "Getting Cooler!";
+        document.getElementById("game").style.backgroundColor = "rgb(129, 135, 255)"
     } else {
-        document.getElementById("currentMessage").innerHTML = "Wait what"
+        document.getElementById("currentMessage").innerHTML = "Lets get moving!"
+        document.getElementById("game").style.backgroundColor = "white"
     }
     intervalLat = latNow;
     intervalLon = lonNow;

@@ -45,6 +45,6 @@ button {
     justify-self: baseline;
 }
 
-.game {
+#game {
     background-color: whitesmoke;
 }
