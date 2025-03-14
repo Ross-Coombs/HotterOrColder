@@ -66,34 +66,47 @@ function checkProgress() {
     console.log(`Progress Check\n` + `Distance from previous check: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m\n` + `Change in distance to target: ${howMuchCloser}m`)
     if (howFarAway < 5) { //is the player <5m away from target?
         document.getElementById("currentMessage").innerHTML = "WIN!";
-        document.getElementById("game").id = "gameWarm3"
+        document.getElementById("game").id = "gameWarm3";
+        endGame();
+        return;
     } else if (howFarAway < 20 && howMuchCloser > 10) { //is the player close to the target AND moving closer?
         document.getElementById("currentMessage").innerHTML = "BOILING HOT!";
-        document.getElementById("game").id = "gameWarm3"
+        document.getElementById("game").id = "gameWarm3";
     } else if (howFarAway < 20) { //is the player close to the target but not moving closer?
         document.getElementById("currentMessage").innerHTML = "HOT HOT HOT! Keep moving!";
-        document.getElementById("game").id = "gameWarm3"
+        document.getElementById("game").id = "gameWarm3";
     } else if (howMuchCloser > -3 && howMuchCloser < 3) { //is the player not moving?
         document.getElementById("currentMessage").innerHTML = "Move around!";
-        document.getElementById("game").id = "game"
+        document.getElementById("game").id = "game";
     } else if (howMuchCloser > 10) { //is the player getting lots closer?
         document.getElementById("currentMessage").innerHTML = "Hotter!";
-        document.getElementById("game").id = "gameWarm2"
+        document.getElementById("game").id = "gameWarm2";
     } else if (howMuchCloser > 0) { //is the player getting a bit closer?
         document.getElementById("currentMessage").innerHTML = "Getting Warmer!";
-        document.getElementById("game").id = "gameWarm1"
+        document.getElementById("game").id = "gameWarm1";
     } else if (howMuchCloser < -10) { //is the player getting lots further away?
         document.getElementById("currentMessage").innerHTML = "Colder!";
-        document.getElementById("game").id = "gameCold2"
+        document.getElementById("game").id = "gameCold2";
     } else if (howMuchCloser < 0) { //is the player getting a but further away?
         document.getElementById("currentMessage").innerHTML = "Getting Cooler!";
-        document.getElementById("game").id = "gameCold1"
+        document.getElementById("game").id = "gameCold1";
     } else { //catch all
         document.getElementById("currentMessage").innerHTML = "Lets get moving!"
-        document.getElementById("game").id = "game"
+        document.getElementById("game").id = "game";
     }
     intervalLat = latNow;
     intervalLon = lonNow;
+}
+
+function endGame() {
+    // Stop location tracking
+    if (watchID) {
+        navigator.geolocation.clearWatch(watchID);
+    }
+    // Stop the timer and progress checks
+    clearInterval(timerInterval);
+    clearInterval(progressInterval);
+    document.getElementById("currentMessage").innerHTML = `WIN!<br>${document.getElementById("timer").innerHTML}`;
 }
 
 function formatTime(ms) {
