@@ -47,4 +47,30 @@ button {
 
 #game {
     background-color: whitesmoke;
+    color: black;
+}
+
+#gameWarm1 {
+    background-color: rgb(255, 105, 106);
+    color: whitesmoke;
+}
+
+#gameWarm2 {
+    background-color: rgb(255, 66, 47);
+    color: whitesmoke;
+}
+
+#gameWarm3 {
+    background-color: rgb(254, 0, 0);
+    color: whitesmoke;
+}
+
+#gameCold1 {
+    background-color: rgb(129, 135, 255);
+    color: whitesmoke;
+}
+
+#gameCold2 {
+    background-color: rgb(47, 155, 254);
+    color: whitesmoke;
 }

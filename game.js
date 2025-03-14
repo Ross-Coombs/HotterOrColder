@@ -64,30 +64,33 @@ function checkProgress() {
     let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
     let howFarAway = calcDistance(targetLat, targetLon, latNow, lonNow);
     console.log(`Progress Check\n` + `Distance from previous check: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m\n` + `Change in distance to target: ${howMuchCloser}m`)
-    if (howFarAway < 5) {
+    if (howFarAway < 5) { //is the player <5m away from target?
         document.getElementById("currentMessage").innerHTML = "WIN!";
-        document.getElementById("game").style.backgroundColor = "rgb(254, 0, 0)"
-    } else if (howFarAway < 15) {
+        document.getElementById("game").id = "gameWarm3"
+    } else if (howFarAway < 20 && howMuchCloser > 10) { //is the player close to the target AND moving closer?
         document.getElementById("currentMessage").innerHTML = "BOILING HOT!";
-        document.getElementById("game").style.backgroundColor = "rgb(254, 0, 0)"
-    } else if (howMuchCloser > 10) {
-        document.getElementById("currentMessage").innerHTML = "Hotter!";
-        document.getElementById("game").style.backgroundColor = "rgb(255, 66, 47)"
-    } else if (howMuchCloser > -1 && howMuchCloser < 1) {
+        document.getElementById("game").id = "gameWarm3"
+    } else if (howFarAway < 20) { //is the player close to the target but not moving closer?
+        document.getElementById("currentMessage").innerHTML = "HOT HOT HOT! Keep moving!";
+        document.getElementById("game").id = "gameWarm3"
+    } else if (howMuchCloser > -3 && howMuchCloser < 3) { //is the player not moving?
         document.getElementById("currentMessage").innerHTML = "Move around!";
-        document.getElementById("game").style.backgroundColor = "white"
-    } else if (howMuchCloser > 0) {
+        document.getElementById("game").id = "game"
+    } else if (howMuchCloser > 10) { //is the player getting lots closer?
+        document.getElementById("currentMessage").innerHTML = "Hotter!";
+        document.getElementById("game").id = "gameWarm2"
+    } else if (howMuchCloser > 0) { //is the player getting a bit closer?
         document.getElementById("currentMessage").innerHTML = "Getting Warmer!";
-        document.getElementById("game").style.backgroundColor = "rgb(255, 105, 106)"
-    } else if (howMuchCloser < -10) {
+        document.getElementById("game").id = "gameWarm1"
+    } else if (howMuchCloser < -10) { //is the player getting lots further away?
         document.getElementById("currentMessage").innerHTML = "Colder!";
-        document.getElementById("game").style.backgroundColor = "rgb(47, 155, 254)"
-    } else if (howMuchCloser < 0) {
+        document.getElementById("game").id = "gameCold2"
+    } else if (howMuchCloser < 0) { //is the player getting a but further away?
         document.getElementById("currentMessage").innerHTML = "Getting Cooler!";
-        document.getElementById("game").style.backgroundColor = "rgb(129, 135, 255)"
-    } else {
+        document.getElementById("game").id = "gameCold1"
+    } else { //catch all
         document.getElementById("currentMessage").innerHTML = "Lets get moving!"
-        document.getElementById("game").style.backgroundColor = "white"
+        document.getElementById("game").id = "game"
     }
     intervalLat = latNow;
     intervalLon = lonNow;
