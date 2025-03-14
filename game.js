@@ -106,7 +106,8 @@ function endGame() {
     // Stop the timer and progress checks
     clearInterval(timerInterval);
     clearInterval(progressInterval);
-    document.getElementById("currentMessage").innerHTML = `WIN!<br>${document.getElementById("timer").innerHTML}`;
+    document.getElementById("currentMessage").innerHTML = `WIN!<br>${document.getElementById("timer").innerHTML}<br><a href="home.html"><button>Home</button></a>`;
+    console.log(`Game won in ${document.getElementById("timer").innerHTML}`);
 }
 
 function formatTime(ms) {
