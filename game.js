@@ -64,7 +64,7 @@ function checkProgress() {
     let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
     let howFarAway = calcDistance(targetLat, targetLon, latNow, lonNow);
     console.log(`Progress Check\n` + `Distance from previous check: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m\n` + `Change in distance to target: ${howMuchCloser}m`)
-    if (howFarAway < 5) { //is the player <5m away from target?
+    if (howFarAway < 10) { //is the player <5m away from target?
         document.getElementById("currentMessage").innerHTML = "WIN!";
         document.getElementById("game").id = "gameWarm3";
         endGame();
