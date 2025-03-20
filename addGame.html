@@ -7,7 +7,7 @@
     <script src="addGame.js"></script>
     <title>Add New Game</title>
 </head>
-<body>
+<body class="homeScreen">
     <h1>Add New Game</h1>
     <form id="addGameForm">
         <label for="name">Game Name:</label>
@@ -16,6 +16,7 @@
         <input type="text" id="lat" name="lat" required><br>
         <label for="lon">Longitude:</label>
         <input type="text" id="lon" name="lon" required><br>
+        <button type="button" onclick="autofillLocation()">Use current location</button><br>
         <button type="submit">Add Game</button>
     </form>
     <div id="message"></div>

@@ -31,3 +31,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function autofillLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.getElementById('lat').value = position.coords.latitude;
+            document.getElementById('lon').value = position.coords.longitude;
+        }, function(error) {
+            console.error('Error getting location:', error);
+            document.getElementById('message').innerText = 'Failed to get location.';
+        });
+    } else {
+        document.getElementById('message').innerText = 'Geolocation is not supported by this browser.';
+    }
+}
