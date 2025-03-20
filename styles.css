@@ -3,6 +3,12 @@ body {
     font-weight: bolder;
 }
 
+.homeScreen {
+    background-image: linear-gradient(rgb(254, 0, 0), whitesmoke, rgb(47, 155, 254));
+    height: 100VH;
+    width: 100VW;
+}
+
 button {
     width: 95VW;
     height: 10VH;
