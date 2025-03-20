@@ -1,13 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('games.csv')
-        .then(response => response.text())
+    fetch('https://your-api-id.execute-api.your-region.amazonaws.com/your-stage/games')
+        .then(response => response.json())
         .then(data => {
-            Papa.parse(data, {
-                header: true,
-                complete: function(results) {
-                    generateButtons(results.data);
-                }
-            });
+            generateButtons(data);
         });
 
     function generateButtons(locations) {

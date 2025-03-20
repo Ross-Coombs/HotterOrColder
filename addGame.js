@@ -7,26 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const lat = document.getElementById('lat').value;
         const lon = document.getElementById('lon').value;
 
-        const newGame = `${name},${lat},${lon}\n`;
+        const newGame = {
+            name: name,
+            lat: lat,
+            lon: lon
+        };
 
-        fetch('games.csv', {
-            method: 'GET',
+        fetch('https://9briongeo1.execute-api.eu-north-1.amazonaws.com/default/hotterOrColder', {
+            method: 'POST',
             headers: {
-                'Content-Type': 'text/csv'
-            }
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newGame)
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            const updatedData = data + newGame;
-            return fetch('games.csv', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'text/csv'
-                },
-                body: updatedData
-            });
-        })
-        .then(() => {
             document.getElementById('message').innerText = 'Game added successfully!';
             form.reset();
         })
