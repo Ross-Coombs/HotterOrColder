@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('games.csv')
-        .then(response => response.text())
+    fetch('https://9briongeo1.execute-api.eu-north-1.amazonaws.com/default/hotterOrColder')
+        .then(response => response.json())
         .then(data => {
-            Papa.parse(data, {
-                header: true,
-                complete: function(results) {
-                    generateButtons(results.data);
-                }
-            });
+            console.log(data); // Log the response to see its structure
+            if (Array.isArray(data)) {
+                generateButtons(data);
+            } else {
+                console.error('Unexpected response format:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching games:', error);
         });
 
     function generateButtons(locations) {
