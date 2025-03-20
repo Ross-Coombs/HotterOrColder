@@ -4,7 +4,7 @@ body {
 }
 
 .homeScreen {
-    background-image: linear-gradient(rgb(254, 0, 0), rgb(254, 0, 0), whitesmoke, rgb(47, 155, 254));
+    background-image: linear-gradient(to bottom left, rgb(254, 0, 0), rgb(254, 0, 0), rgb(254, 0, 0), rgb(47, 155, 254), rgb(47, 155, 254));
     height: 100VH;
     width: 100VW;
     margin: 0;
