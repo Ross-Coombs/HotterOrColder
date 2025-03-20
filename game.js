@@ -36,7 +36,7 @@ function showPosition(position) {
     previousLon = lonNow;
     latNow = position.coords.latitude;  // Extract latitude
     lonNow = position.coords.longitude; // Extract longitude
-    console.log(`Updated Position\nLatitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(targetLat, targetLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`);
+    console.log(`Updated Position\nLatitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(targetLat, targetLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 3.5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`);
     //document.getElementById("currentMessage").innerHTML = `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(2)} m`;
     //document.getElementById("currentMessage").innerHTML = `Latitude: ${latNow}<br>Longitude: ${lonNow}<br>` + `Distance from target: ${calcDistance(targetLat, targetLon, latNow, lonNow).toFixed(3)} m<br>` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m<br>` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`;
 }
@@ -57,7 +57,7 @@ let intervalLat;
 let intervalLon;
 let progress;
 function checkProgress() {
-    if (Date.now()-lastLocUpdate > 5000) {
+    if (Date.now()-lastLocUpdate > 3500) {
         console.log(`Progress Check: Location not updated since last check\nLocation last updated: ${lastLocUpdate}`)
         return;
     }
@@ -127,5 +127,5 @@ function gameplay() {
     getLocation();
     let startTime = Date.now();
     setInterval(() => timer(startTime), 100);
-    setInterval(() => checkProgress(), 5000);
+    setInterval(() => checkProgress(), 3500);
 }
