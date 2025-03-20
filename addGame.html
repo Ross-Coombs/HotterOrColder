@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/3ae11302fe.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <script src="addGame.js"></script>
     <title>Add New Game</title>
@@ -16,7 +17,7 @@
         <input type="text" id="lat" name="lat" required><br>
         <label for="lon">Longitude:</label>
         <input type="text" id="lon" name="lon" required><br>
-        <button type="button" onclick="autofillLocation()">Use current location</button><br>
+        <button type="button" id="autofill" onclick="autofillLocation()"><i class="fa-solid fa-location-dot"></i> Use current location</button><br>
         <button type="submit">Add Game</button>
     </form>
     <div id="message"></div>
