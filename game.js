@@ -69,13 +69,13 @@ function checkProgress() {
         document.getElementById("game").id = "gameWarm3";
         endGame();
         return;
-    } else if (howFarAway < 20 && howMuchCloser > 10) { //is the player close to the target AND moving closer?
+    } else if (howFarAway < 30 && howMuchCloser > 5) { //is the player close to the target AND moving closer?
         document.getElementById("currentMessage").innerHTML = "BOILING HOT!";
         document.getElementById("gameBody").classList = "gameWarm3";
-    } else if (howFarAway < 20) { //is the player close to the target but not moving closer?
+    } else if (howFarAway < 30) { //is the player close to the target but not moving closer?
         document.getElementById("currentMessage").innerHTML = "HOT HOT HOT! Keep moving!";
         document.getElementById("gameBody").classList = "gameWarm3";
-    } else if (howMuchCloser > -3 && howMuchCloser < 3) { //is the player not moving?
+    } else if (howMuchCloser > -2 && howMuchCloser < 2) { //is the player not moving?
         document.getElementById("currentMessage").innerHTML = "Move around!";
         document.getElementById("gameBody").classList = "game";
     } else if (howMuchCloser > 10) { //is the player getting lots closer?
@@ -87,7 +87,7 @@ function checkProgress() {
     } else if (howMuchCloser < -10) { //is the player getting lots further away?
         document.getElementById("currentMessage").innerHTML = "Colder!";
         document.getElementById("gameBody").classList = "gameCold2";
-    } else if (howMuchCloser < 0) { //is the player getting a but further away?
+    } else if (howMuchCloser < 0) { //is the player getting a bit further away?
         document.getElementById("currentMessage").innerHTML = "Getting Cooler!";
         document.getElementById("gameBody").classList = "gameCold1";
     } else { //catch all
