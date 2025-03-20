@@ -10,6 +10,25 @@ body {
     margin: 0;
 }
 
+input {
+    width: 95VW;
+    height: 5VH;
+    display: block;
+    padding-left: auto;
+    padding-right: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1VH;
+    background-color: whitesmoke;
+    border-color: black;
+    border-radius: 5VW;
+    border: 1VW;
+    border-style: solid;
+    font-size: larger;
+    opacity: 0.6;
+    font-weight: bolder;
+}
+
 button {
     width: 95VW;
     height: 10VH;
@@ -25,6 +44,8 @@ button {
     border: 1VW;
     border-style: solid;
     font-size: larger;
+    opacity: 0.6;
+    font-weight: bolder;
 }
 
 a {
@@ -54,10 +75,26 @@ a {
     height: 100VH;
 }
 
-#currentMessage {
+h1 {
     text-align: center;
     margin: auto;
     justify-self: center;
+}
+
+label {
+    display: block;
+    text-align: center;
+    margin: auto;
+    justify-self: center;
+    color: whitesmoke;
+    font-size: 3VH;
+}
+
+#heading {
+    margin-top: 10VH;
+    margin-bottom: 8VH;
+    font-size: 15VW;
+    color: whitesmoke;
 }
 
 #timer {
