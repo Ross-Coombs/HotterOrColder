@@ -2,7 +2,7 @@ let latlons = new URLSearchParams(window.location.search); //for campus green: ?
 let targetLat = latlons.get("lat");
 let targetLon = latlons.get("lon");
 console.log(`Target Lat: ${targetLat} Lon: ${targetLon}`);
-let winThreshold = 40; //how far away from target the player needs to be to win
+let winThreshold = 35; //how far away from target the player needs to be to win
 let watchID;
 function getLocation() {
     if (navigator.geolocation) {
