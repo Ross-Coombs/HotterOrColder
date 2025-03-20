@@ -2,6 +2,7 @@ let latlons = new URLSearchParams(window.location.search); //for campus green: ?
 let targetLat = latlons.get("lat");
 let targetLon = latlons.get("lon");
 console.log(`Target Lat: ${targetLat} Lon: ${targetLon}`);
+let winThreshold = 40; //how far away from target the player needs to be to win
 let watchID;
 function getLocation() {
     if (navigator.geolocation) {
@@ -37,8 +38,11 @@ function showPosition(position) {
     latNow = position.coords.latitude;  // Extract latitude
     lonNow = position.coords.longitude; // Extract longitude
     console.log(`Updated Position\nLatitude: ${latNow}\nLongitude: ${lonNow}\n` + `Distance from target: ${calcDistance(targetLat, targetLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m\n` + `Distance from location on 3.5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`);
-    //document.getElementById("currentMessage").innerHTML = `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(2)} m`;
-    //document.getElementById("currentMessage").innerHTML = `Latitude: ${latNow}<br>Longitude: ${lonNow}<br>` + `Distance from target: ${calcDistance(targetLat, targetLon, latNow, lonNow).toFixed(3)} m<br>` + `Distance from previous location: ${calcDistance(previousLat, previousLon, latNow, lonNow).toFixed(3)} m<br>` + `Distance from location on 5s timer: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m`;
+    if (calcDistance(targetLat, targetLon, latNow, lonNow) < winThreshold) { //is the player <5m away from target?
+        document.getElementById("gameBody").classList = "gameWarm3";
+        endGame();
+        return;
+    }    
 }
 
 //calculate distance using the haversine formula
@@ -64,9 +68,8 @@ function checkProgress() {
     let howMuchCloser = calcDistance(targetLat, targetLon, intervalLat, intervalLon) - calcDistance(targetLat, targetLon, latNow, lonNow);
     let howFarAway = calcDistance(targetLat, targetLon, latNow, lonNow);
     console.log(`Progress Check\n` + `Distance from previous check: ${calcDistance(intervalLat, intervalLon, latNow, lonNow).toFixed(3)} m\n` + `Change in distance to target: ${howMuchCloser}m`)
-    if (howFarAway < 10) { //is the player <5m away from target?
-        document.getElementById("currentMessage").innerHTML = "WIN!";
-        document.getElementById("game").id = "gameWarm3";
+    if (howFarAway < winThreshold) { //is the player a winning distance away from target?
+        document.getElementById("gameBody").classList = "gameWarm3";
         endGame();
         return;
     } else if (howFarAway < 30 && howMuchCloser > 5) { //is the player close to the target AND moving closer?
@@ -91,7 +94,7 @@ function checkProgress() {
         document.getElementById("currentMessage").innerHTML = "Getting Cooler!";
         document.getElementById("gameBody").classList = "gameCold1";
     } else { //catch all
-        document.getElementById("currentMessage").innerHTML = "Lets get moving!"
+        document.getElementById("currentMessage").innerHTML = "Getting Location..."
         document.getElementById("gameBody").classList = "game";
     }
     intervalLat = latNow;
@@ -104,10 +107,12 @@ function endGame() {
         navigator.geolocation.clearWatch(watchID);
     }
     // Stop the timer and progress checks
-    clearInterval(timerInterval);
-    clearInterval(progressInterval);
+    clearInterval(timerIntervalID);
+    clearInterval(progressIntervalID);
+    //win screen
     document.getElementById("currentMessage").innerHTML = `WIN!<br>${document.getElementById("timer").innerHTML}<br><a href="home.html"><button>Home</button></a>`;
     console.log(`Game won in ${document.getElementById("timer").innerHTML}`);
+    document.getElementById("timer").remove();
 }
 
 function formatTime(ms) {
@@ -123,9 +128,11 @@ function timer(startTime) {
     document.getElementById("timer").innerHTML = formatTime(elapsedTime);
 }
 
+let timerIntervalID;
+let progressIntervalID;
 function gameplay() {
     getLocation();
     let startTime = Date.now();
-    setInterval(() => timer(startTime), 100);
-    setInterval(() => checkProgress(), 3500);
+    timerIntervalID = setInterval(() => timer(startTime), 100);
+    progressIntervalID = setInterval(() => checkProgress(), 3500);
 }
