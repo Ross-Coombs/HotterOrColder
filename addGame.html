@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="addGame.js"></script>
+    <title>Add New Game</title>
+</head>
+<body>
+    <h1>Add New Game</h1>
+    <form id="addGameForm">
+        <label for="name">Game Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="lat">Latitude:</label>
+        <input type="text" id="lat" name="lat" required><br>
+        <label for="lon">Longitude:</label>
+        <input type="text" id="lon" name="lon" required><br>
+        <button type="submit">Add Game</button>
+    </form>
+    <div id="message"></div>
+</body>
+</html>
