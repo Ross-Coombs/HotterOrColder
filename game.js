@@ -71,28 +71,28 @@ function checkProgress() {
         return;
     } else if (howFarAway < 20 && howMuchCloser > 10) { //is the player close to the target AND moving closer?
         document.getElementById("currentMessage").innerHTML = "BOILING HOT!";
-        document.getElementById("game").id = "gameWarm3";
+        document.getElementById("gameBody").classList = "gameWarm3";
     } else if (howFarAway < 20) { //is the player close to the target but not moving closer?
         document.getElementById("currentMessage").innerHTML = "HOT HOT HOT! Keep moving!";
-        document.getElementById("game").id = "gameWarm3";
+        document.getElementById("gameBody").classList = "gameWarm3";
     } else if (howMuchCloser > -3 && howMuchCloser < 3) { //is the player not moving?
         document.getElementById("currentMessage").innerHTML = "Move around!";
-        document.getElementById("game").id = "game";
+        document.getElementById("gameBody").classList = "game";
     } else if (howMuchCloser > 10) { //is the player getting lots closer?
         document.getElementById("currentMessage").innerHTML = "Hotter!";
-        document.getElementById("game").id = "gameWarm2";
+        document.getElementById("gameBody").classList = "gameWarm2";
     } else if (howMuchCloser > 0) { //is the player getting a bit closer?
         document.getElementById("currentMessage").innerHTML = "Getting Warmer!";
-        document.getElementById("game").id = "gameWarm1";
+        document.getElementById("gameBody").classList = "gameWarm1";
     } else if (howMuchCloser < -10) { //is the player getting lots further away?
         document.getElementById("currentMessage").innerHTML = "Colder!";
-        document.getElementById("game").id = "gameCold2";
+        document.getElementById("gameBody").classList = "gameCold2";
     } else if (howMuchCloser < 0) { //is the player getting a but further away?
         document.getElementById("currentMessage").innerHTML = "Getting Cooler!";
-        document.getElementById("game").id = "gameCold1";
+        document.getElementById("gameBody").classList = "gameCold1";
     } else { //catch all
         document.getElementById("currentMessage").innerHTML = "Lets get moving!"
-        document.getElementById("game").id = "game";
+        document.getElementById("gameBody").classList = "game";
     }
     intervalLat = latNow;
     intervalLon = lonNow;
