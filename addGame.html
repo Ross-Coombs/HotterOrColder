@@ -6,6 +6,7 @@
     <script src="https://kit.fontawesome.com/3ae11302fe.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <script src="addGame.js"></script>
+    <link rel="manifest" href="manifest.json">
     <title>Add New Game</title>
 </head>
 <body class="homeScreen">
@@ -22,4 +23,15 @@
     </form>
     <div id="message"></div>
 </body>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+</script>
 </html>

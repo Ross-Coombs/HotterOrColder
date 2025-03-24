@@ -6,10 +6,22 @@
         <script src="https://kit.fontawesome.com/3ae11302fe.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="styles.css">
         <script src="game.js"></script>
+        <link rel="manifest" href="manifest.json">
         <title>Hotter Or Colder</title>
     </head>
 <body id="gameBody" onload="gameplay()">
     <p id="timer">00:00</p>
     <h1 id="currentMessage">Lets go!</h1>
 </body>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+</script>
 </html>
