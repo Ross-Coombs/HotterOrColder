@@ -3,7 +3,6 @@ self.addEventListener('install', (event) => {
         caches.open('hotter-or-colder-v1').then((cache) => {
             return cache.addAll([
                 '/HotterOrColder/',
-                '/HotterOrColder/index.html',
                 '/HotterOrColder/home.html',
                 '/HotterOrColder/addGame.html',
                 '/HotterOrColder/game.html',
