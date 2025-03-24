@@ -12,8 +12,7 @@ self.addEventListener('install', (event) => {
                 '/addGame.js',
                 '/game.js',
                 '/manifest.json',
-                '/icon-192x192.png',
-                '/icon-512x512.png'
+                '/icon.png'
             ]);
         })
     );
