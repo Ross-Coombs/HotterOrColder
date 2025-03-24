@@ -57,13 +57,6 @@ function calcDistance(lat1, lon1, lat2, lon2) {
     return (6371 * c)*1000; // Distance in m (6371 is the radius of Earth in km)
 }
 
-function updateThemeColour(color) {
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-        metaThemeColor.setAttribute('content', color);
-    }
-}
-
 let intervalLat;
 let intervalLon;
 let progress;
@@ -104,7 +97,6 @@ function checkProgress() {
         document.getElementById("currentMessage").innerHTML = "Getting Location..."
         document.getElementById("gameBody").classList = "game";
     }
-    updateThemeColour(window.getComputedStyle(document.body).backgroundColor);
     intervalLat = latNow;
     intervalLon = lonNow;
 }
