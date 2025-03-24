@@ -2,7 +2,7 @@ let latlons = new URLSearchParams(window.location.search); //for campus green: ?
 let targetLat = latlons.get("lat");
 let targetLon = latlons.get("lon");
 console.log(`Target Lat: ${targetLat} Lon: ${targetLon}`);
-let winThreshold = 8; //how far away from target the player needs to be to win
+let winThreshold = 9; //how far away from target the player needs to be to win
 console.log(`Win Threshold: ${winThreshold} m`);
 let watchID;
 function getLocation() {
@@ -73,10 +73,10 @@ function checkProgress() {
         document.getElementById("gameBody").classList = "gameWarm3";
         endGame();
         return;
-    } else if (howFarAway < 32 && howMuchCloser > 5) { //is the player close to the target AND moving closer?
+    } else if (howFarAway < 35 && howMuchCloser > 5) { //is the player close to the target AND moving closer?
         document.getElementById("currentMessage").innerHTML = "BOILING HOT!";
         document.getElementById("gameBody").classList = "gameWarm3";
-    } else if (howFarAway < 32) { //is the player close to the target but not moving closer?
+    } else if (howFarAway < 35) { //is the player close to the target but not moving closer?
         document.getElementById("currentMessage").innerHTML = "HOT HOT HOT! Keep moving!";
         document.getElementById("gameBody").classList = "gameWarm3";
     } else if (howMuchCloser > -2 && howMuchCloser < 2) { //is the player not moving?
