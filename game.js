@@ -132,6 +132,7 @@ let timerIntervalID;
 let progressIntervalID;
 function gameplay() {
     getLocation();
+    console.log("Win Threshold: " + winThreshold);
     let startTime = Date.now();
     timerIntervalID = setInterval(() => timer(startTime), 100);
     progressIntervalID = setInterval(() => checkProgress(), 3500);
