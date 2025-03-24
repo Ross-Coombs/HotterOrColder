@@ -12,8 +12,7 @@ self.addEventListener('install', (event) => {
                 '/HotterOrColder/addGame.js',
                 '/HotterOrColder/game.js',
                 '/HotterOrColder/manifest.json',
-                '/HotterOrColder/icon-192x192.png',
-                '/HotterOrColder/icon-512x512.png'
+                '/HotterOrColder/icon.png'
             ]);
         })
     );
