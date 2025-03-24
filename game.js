@@ -131,13 +131,6 @@ function timer(startTime) {
 let timerIntervalID;
 let progressIntervalID;
 function gameplay() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch((err) => {
-            console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-        });
-    } else {
-        document.exitFullscreen();
-    }
     getLocation();
     let startTime = Date.now();
     timerIntervalID = setInterval(() => timer(startTime), 100);
