@@ -3,7 +3,7 @@ let targetLat = latlons.get("lat");
 let targetLon = latlons.get("lon");
 console.log(`Target Lat: ${targetLat} Lon: ${targetLon}`);
 let winThreshold = 10; //how far away from target the player needs to be to win
-console.log("Win Threshold: ${winThreshold} m");
+console.log(`Win Threshold: ${winThreshold} m`);
 let watchID;
 function getLocation() {
     if (navigator.geolocation) {
